@@ -9,3 +9,4 @@ Pure Number is a [PopClip](http://pilotmoon.com/popclip/) extension which conver
 
 download：[purenumber.popclipextz](https://github.com/harmy/PopClip-Extensions/raw/master/extensions/PureNumber.popclipextz)
 
+after install, try this text: 幺两三四五六拐八狗洞
