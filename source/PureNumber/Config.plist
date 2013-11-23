@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>After</key>
-			<string>paste-result</string>
+			<string>preview-result</string>
 			<key>Image File</key>
 			<string>purenumber.png</string>
 			<key>Script Interpreter</key>
@@ -33,6 +33,6 @@
 	<key>Extension Name</key>
 	<string>PureNumber</string>
 	<key>Version</key>
-	<integer>1</integer>
+	<integer>2</integer>
 </dict>
 </plist>
