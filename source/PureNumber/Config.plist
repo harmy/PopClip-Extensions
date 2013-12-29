@@ -16,7 +16,7 @@
 			<key>Title</key>
 			<string>PureNumber</string>
 			<key>Regular Expression</key>
-			<string>^.*[\p{Han}\p{N}].*$</string>
+			<string>(?s)^.*[\p{Han}\p{N}].*$</string>
 		</dict>
 	</array>
 	<key>Credits</key>

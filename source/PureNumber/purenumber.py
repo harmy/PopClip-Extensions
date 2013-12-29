@@ -4,7 +4,6 @@ import os
 CHINESE_NUMBERS = ['ling', 'yi', 'er', 'san', 'si', 'wu', 'liu', 'qi', 'ba', 'jiu']
 
 selected_text = os.environ.get('POPCLIP_TEXT', '幺两三四五六拐八狗洞')
-
 selected_text = unicode(selected_text, 'utf-8')
 
 pinyin_data = {}
@@ -16,5 +15,6 @@ with open('pinyin.dat') as f:
             pinyin_data[unicode(key, 'utf-8')] = str(CHINESE_NUMBERS.index(value))
 
 translated_text = [pinyin_data.get(char, char) for char in selected_text]
+result = ''.join([char for char in translated_text if char.isdigit()])
 
-print ''.join([char for char in translated_text if char.isdigit()])
+print result if result != '' else '抱歉，从您选择的文本中找不到任何数字！'
