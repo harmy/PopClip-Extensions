@@ -1,12 +1,32 @@
-PopClip-Extensions
-==================
+# PopClip-Extensions
 
-Pure Number
------------
-Pure Number is a [PopClip](http://pilotmoon.com/popclip/) extension which converts any Chinese numbers into pure Arabic figures.
+these are my collections of [PopClip][popclip] extension.
 
-![screenshot](screenshot.gif)
+## Better Translate
 
-download：[purenumber.popclipextz](https://github.com/harmy/PopClip-Extensions/raw/master/extensions/PureNumber.popclipextz)
+Translate selected text instantly using google translate.
 
-after install, try this text: 幺两三四五六拐八狗洞
+* instantly translate selected text without opening dictionary app or browser.
+* lovely powered by google translate and support up to 81 languages by now.
+* using google tts service to convert text to speech.
+
+![screenshot](docs/screen_bettertranslate1.png)
+![screenshot](docs/screen_bettertranslate2.png)
+![screenshot](docs/screen_bettertranslate3.png)
+
+download: [bettertranslate.popclipextz][bettertranslate]
+
+
+## Pure Number
+
+Converts any Chinese numbers into pure Arabic figures.
+
+![screenshot](docs/screenshot.gif)
+
+download：[purenumber.popclipextz][purenumber]
+
+after install, try this text: 幺两三四五六拐八狗洞.
+
+[popclip]: http://pilotmoon.com/popclip/
+[purenumber]: https://github.com/harmy/PopClip-Extensions/raw/master/extensions/PureNumber.popclipextz
+[bettertranslate]: https://github.com/harmy/PopClip-Extensions/raw/master/extensions/BetterTranslate.popclipextz
