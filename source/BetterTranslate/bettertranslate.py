@@ -6,7 +6,94 @@ import urllib, urllib2
 from tempfile import NamedTemporaryFile
 from translate import Translator
 
-def google_tts(text):
+LANG_CODES = {
+        "Afrikaans":"af",
+        "Albanian":"sq",
+        "Arabic":"ar",
+        "Armenian":"hy",
+        "Azerbaijani":"az",
+        "Basque":"eu",
+        "Belarusian":"be",
+        "Bengali":"bn",
+        "Bosnian":"bs",
+        "Bulgarian":"bg",
+        "Catalan":"ca",
+        "Cebuano":"ceb",
+        "Chinese (Simplified)":"zh-CN",
+        "Chinese (Traditional)":"zh-TW",
+        "Croatian":"hr",
+        "Czech":"cs",
+        "Danish":"da",
+        "Dutch":"nl",
+        "English":"en",
+        "Esperanto":"eo",
+        "Estonian":"et",
+        "Filipino":"tl",
+        "Finnish":"fi",
+        "French":"fr",
+        "Galician":"gl",
+        "Georgian":"ka",
+        "German":"de",
+        "Greek":"el",
+        "Gujarati":"gu",
+        "Haitian Creole":"ht",
+        "Hausa":"ha",
+        "Hebrew":"iw",
+        "Hindi":"hi",
+        "Hmong":"hmn",
+        "Hungarian":"hu",
+        "Icelandic":"is",
+        "Igbo":"ig",
+        "Indonesian":"id",
+        "Irish":"ga",
+        "Italian":"it",
+        "Japanese":"ja",
+        "Javanese":"jw",
+        "Kannada":"kn",
+        "Khmer":"km",
+        "Korean":"ko",
+        "Lao":"lo",
+        "Latin":"la",
+        "Latvian":"lv",
+        "Lithuanian":"lt",
+        "Macedonian":"mk",
+        "Malay":"ms",
+        "Maltese":"mt",
+        "Maori":"mi",
+        "Marathi":"mr",
+        "Mongolian":"mn",
+        "Nepali":"ne",
+        "Norwegian":"no",
+        "Persian":"fa",
+        "Polish":"pl",
+        "Portuguese":"pt",
+        "Punjabi":"pa",
+        "Romanian":"ro",
+        "Russian":"ru",
+        "Serbian":"sr",
+        "Slovak":"sk",
+        "Slovenian":"sl",
+        "Somali":"so",
+        "Spanish":"es",
+        "Swahili":"sw",
+        "Swedish":"sv",
+        "Tamil":"ta",
+        "Telugu":"te",
+        "Thai":"th",
+        "Turkish":"tr",
+        "Ukrainian":"uk",
+        "Urdu":"ur",
+        "Vietnamese":"vi",
+        "Welsh":"cy",
+        "Yiddish":"yi",
+        "Yoruba":"yo",
+        "Zulu":"zu"
+        }
+
+def google_tts(text, tl='en'):
+    """
+    this function is adapted from https://github.com/hungtruong/Google-Translate-TTS, thanks @hungtruong.
+    """
 	#process text into chunks
     text = text.replace('\n','')
     text_list = re.split('(\,|\.)', text)
@@ -33,7 +120,7 @@ def google_tts(text):
     #download chunks and write them to the output file
     f = NamedTemporaryFile(delete=False)
     for idx, val in enumerate(combined_text):
-        mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % ('en', urllib.quote(val), len(combined_text), idx)
+        mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (tl, urllib.quote(val), len(combined_text), idx)
         headers = {"Host":"translate.google.com",
           "Referer":"http://www.gstatic.com/translate/sound_player2.swf",
           "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
@@ -52,15 +139,15 @@ def google_tts(text):
 
 selectedText= os.environ['POPCLIP_TEXT']
 destLang = os.environ['POPCLIP_OPTION_DESTLANG']
-tts = os.environ['POPCLIP_OPTION_TTS']
+ttsLang = os.environ['POPCLIP_OPTION_TTSLANG']
 
 from translate import Translator
-translator= Translator(to_lang=destLang)
+translator= Translator(to_lang=LANG_CODES[destLang])
 translation = translator.translate(selectedText)
 
-if tts == 'system':
-	os.system('echo {0} | say'.format(selectedText))
-elif tts == 'google':
-	google_tts(selectedText)
+if ttsLang != 'Disabled':
+    google_tts(selectedText, LANG_CODES[ttsLang])
 
-print translation.encode('utf-8')
+result = translation.encode('utf-8')
+
+print result
